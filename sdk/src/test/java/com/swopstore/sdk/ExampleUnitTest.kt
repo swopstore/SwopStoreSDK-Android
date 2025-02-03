@@ -14,4 +14,18 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+
+    @Test
+    fun alwaysCurrentOrderNonnull() {
+        val sdk = SwopStoreSDK.initSdk(12)
+        assertNotNull(sdk.getCurrentOrder())
+        sdk.resetCurrentOrder()
+        assertNotNull(sdk.getCurrentOrder())
+        sdk.removeOrder("current")
+        assertNotNull(sdk.getCurrentOrder())
+        sdk.clearOrders()
+        assertNotNull(sdk.getCurrentOrder())
+    }
+
 }

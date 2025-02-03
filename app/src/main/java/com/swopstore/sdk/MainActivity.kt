@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         SwopStoreSDK.initSdk(1095)
 
         SwopStoreSDK.getCurrentOrder().
-        setCustomerFirstName("TEST USER NAME")
+        withCustomerFirstName("TEST USER NAME")
 
         val banner = SwopStoreSDK.getBannerWithCurrentOrder(3132)
 

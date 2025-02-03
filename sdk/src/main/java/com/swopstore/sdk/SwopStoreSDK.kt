@@ -6,6 +6,7 @@ import com.swopstore.sdk.models.Order
 object SwopStoreSDK {
     
     private var shopId = 0
+    private const val CURRENT_ORDER_NAME = "current"
     private var orderMap: MutableMap<String, Order> = HashMap<String, Order>()
 
     fun getShopId(): Int {
@@ -31,33 +32,38 @@ object SwopStoreSDK {
 
 
     fun getCurrentOrder(): Order {
-        return orderMap.get("current")!!
+        return orderMap[CURRENT_ORDER_NAME]!!
     }
 
     fun addOrder(name: String, id: Order) {
-        orderMap.put(name, id)
+        orderMap[name] = id
     }
 
     fun resetCurrentOrder() {
-        orderMap.put("current", Order())
+        orderMap[CURRENT_ORDER_NAME] = Order()
     }
 
     fun removeOrder(name: String) {
         orderMap.remove(name)
+        if(name == CURRENT_ORDER_NAME ){
+            resetCurrentOrder()
+        }
     }
 
     fun getOrderBy(name: String): Order? {
-        return orderMap.get(name)
+        return orderMap[name]
     }
 
     fun clearOrders() {
         orderMap.clear()
+        resetCurrentOrder()
     }
 
 
-    fun initSdk(shopId: Int) {
+    fun initSdk(shopId: Int) : SwopStoreSDK {
         this.shopId = shopId
-        orderMap.put("current", Order())
+        resetCurrentOrder()
+        return this
     }
 
 }
