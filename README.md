@@ -1,6 +1,6 @@
 
 # SwopStore SDK Android
-This is an SDK for SwopStore , written in the Kotlin
+This is an SDK for SwopStore , written in the Kotlin [![](https://jitpack.io/v/swopstore/SwopStoreSDK-Android.svg)](https://jitpack.io/#swopstore/SwopStoreSDK-Android)
 
 ## Installation  
 
@@ -18,9 +18,10 @@ To import the SwopStoreSDK import the dependency,
 
 ```groovy
 dependencies {
-     implementation 'com.github.swopstore:SwopStoreSDK-Android:1.1.2'
+     implementation 'com.github.swopstore:SwopStoreSDK-Android:1.1.3'
 }
 ```
+
 
 ## Quick start
 
@@ -35,8 +36,8 @@ To collect parameters for an order, use the builder pattern for the order object
 
 ```kotlin
     SwopStoreSDK.getCurrentOrder().
-					setCustomerFirstName("name").
-					setCustomerLastName("lastname")...
+					withCustomerFirstName("name").
+					withCustomerLastName("lastname")...
 
  ```
 
@@ -69,8 +70,8 @@ It is possible to add several Order objects, for subsequent selection and insert
     SwopStoreSDK.addOrder("NewOne")
 
     SwopStoreSDK.getOrder("NewOne").
-					setCustomerFirstName("name").
-					setCustomerLastName("lastname")...
+					withCustomerFirstName("name").
+					withCustomerLastName("lastname")...
 
  ```
 
@@ -118,9 +119,10 @@ The complete code:
         SwopStoreSDK.resetCurrentOrder()
 		
 		//Adding fields to an order
+        //Kotlin
         SwopStoreSDK.getCurrentOrder().customerFirstName = "FirstName"
-        SwopStoreSDK.getCurrentOrder().setCustomerLastName("LastName")
-									  .setCustomerGender(Order.Gender.male)
+        SwopStoreSDK.getCurrentOrder().withCustomerLastName("LastName")
+									  .withCustomerGender(Order.Gender.male)
 
 
         val bannerView: BannerView = findViewById(R.id.bannerView)
@@ -132,5 +134,7 @@ The complete code:
 		
 	
  ```
+
+
 
 
